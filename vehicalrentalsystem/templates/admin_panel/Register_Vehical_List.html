@@ -1,0 +1,74 @@
+{% extends 'admin_panel/base.html' %}
+{% load static %}
+
+{% block head %}
+    
+<style>
+    /* .table{
+        background-color: rgb(33, 152, 199) !important;
+        border-radius: 25px;
+    } */
+        
+    
+    
+</style>
+
+      {% endblock %}
+
+    {% block main %}
+    
+
+    
+
+    <a class="btn btn-danger" href="{% url 'admin_panel:vehical_Registration' %}">Register New Vehical</a>
+
+    <br>
+    <br>
+
+    {% for i in types %}
+        <a href="{% url 'admin_panel:type_wise_filter_in_registration' i.id %}" type="button" class="btn btn-outline-dark"> {{ i.Type_Name }} </a>
+    {% endfor %}
+
+    <h1>List Of Register Vehical</h1>
+    <br>
+    <table class="table">
+        <thead class="table-dark" style="border-radius: 25px;">
+            <tr>
+                <th scope="col">NO.</th>
+                <th scope="col">vehical_Variant</th>
+                <th scope="col">Vehical_Number</th>
+                <th scope="col">Model_Year</th>
+                <th scope="col">KM_reading</th>
+                <th scope="col">Vehical_Orignal_img</th>
+                <th scope="col">Status</th>
+                <th scope="col">Prize Per Day</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in data %}
+            <tr class="shadow p-3 mb-5 bg-body rounded" >
+                <td scope="row">{{ forloop.counter }}</td>
+                <!-- <td><img src="{{i.Variant_Photo.url}}" class="img" alt=""> -->
+                <td>{{ i.vehical_Variant }}</td>
+                <td>{{ i.Vehical_Number }}</td>
+                <td>{{ i.Model_Year }}</td>
+                <td>{{ i.KM_reading }}</td>
+                <td><img src="{{ i.Vehical_Orignal_img.url }}" class="rounded" alt=""></td>
+                <td>{{ i.Status }}</td>
+                <td>{{ i.Prize }}</td>
+                <td>{{ i.Action }}
+
+                    <a class="btn btn-secondary" href="{% url 'admin_panel:update_Register_Vehical' i.id %}" role="button">Update</a>
+                    <a class="btn btn-danger" href="{% url 'admin_panel:delete_Register_Vehical' i.id %}" role="button">Delete</a>
+                   
+                </td>
+            
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    
+    
+    {% endblock %}

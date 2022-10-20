@@ -1,0 +1,44 @@
+echo "# vehicalrentalsystem" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/Nishant2780/vehicalrentalsystem.git
+git push -u origin main
+
+
+
+git --version
+git init
+git add .
+git commit -m "first commit"
+git config --global user.name "Nishat2708"
+git config --global user.email "nishantkumar.patel105184@marwadiuniversity.ac.in"
+git remote add origin https://github.com/Nishant2780/BloodBank.git
+git push origin master
+
+
+
+NOTE:
+    List your existing origin 
+        git remote -v
+    Change Your Current origin
+        git remote set-url origin https://github.com/USERNAME/REPOSITORY.git
+
+
+git add .
+git commit -m "added git commands"
+git push origin master
+
+to pull code 
+git pull origin master
+
+
+CREATE BRANCH
+git branch Dhruv
+git checkout Dhruv
+git push origin dhruv
+
+
+
+extra commands

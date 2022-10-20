@@ -1,0 +1,75 @@
+{% extends 'owner_panel/base.html' %}
+{% load static %}
+
+{% block main %}
+
+<!-- Banner Starts Here -->
+
+<div class="banner header-text">
+    <div class="owl-banner owl-carousel">
+      <div class="banner-item-01">
+        <div class="text-content">
+          <h4>Find your car today!</h4>
+          <h2>Lorem ipsum dolor sit amet</h2>
+        </div>
+      </div>
+      <div class="banner-item-02">
+        <div class="text-content">
+          <h4>Fugiat Aspernatur</h4>
+          <h2>Laboriosam reprehenderit ducimus</h2>
+        </div>
+      </div>
+      <div class="banner-item-03">
+        <div class="text-content">
+          <h4>Saepe Omnis</h4>
+          <h2>Quaerat suscipit unde minus dicta</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+    <!-- Banner Ends Here -->
+
+    
+    <table class="table">
+        <thead class="table-dark" style="border-radius: 25px;">
+            <tr>
+                
+                <th scope="col">vehical_Variant</th>
+                <th scope="col">Vehical_Number</th>
+                <th scope="col">Model_Year</th>
+                <th scope="col">KM_reading</th>
+                <th scope="col">Vehical_Orignal_img</th>
+                <th scope="col">Prize Per Day</th>
+                <th scope="col">Status</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+          {% for i in data %}
+            <tr class="shadow p-3 mb-5 bg-body rounded" >
+                
+                <td>{{ i.vehical_Variant }}</td>
+                <td>{{ i.Vehical_Number }}</td>
+                <td>{{ i.Model_Year }}</td>
+                <td>{{ i.KM_reading }}</td>
+                <td>
+                    {% if data.Vehical_Orignal_img %}
+                    <img src="{{ i.Vehical_Orignal_img.url }}" style="height: 50px;" class="rounded" alt="">
+                    {% else %}
+                    No Img
+                    {% endif %}
+                </td>
+                
+                <td>{{ i.Prize }}</td>
+                <td>{{ i.Status }}</td>
+                <td>{{ i.Action }}              
+                <a class="btn btn-danger" href="{% url 'owner_panel:delete_vehicle' i.id %}" role="button">Delete</a>               
+              </td>   
+            </tr>
+            {% endfor %}
+            
+        </tbody>
+    </table>
+
+{% endblock %}
+

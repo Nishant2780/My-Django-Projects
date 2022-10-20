@@ -1,0 +1,59 @@
+{% extends 'admin_panel/base.html' %}
+{% load static %}
+
+{% block head %}
+    
+<style>
+    /* .table{
+        background-color: rgb(33, 152, 199) !important;
+        border-radius: 25px;
+        
+    } */
+    
+    
+</style>
+
+      {% endblock %}
+
+    {% block main %}
+    
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form.as_p}}
+        
+
+        <button class="btn btn-danger" type="submit"> Submit</button>
+    </form>
+
+    
+
+    <br>
+    <br>
+
+    <h1>Vehical Brand </h1>
+    <table class="table">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">NO.</th>
+                <th scope="col">Brand Name</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in data %}
+            <tr class="shadow p-3 mb-5 bg-body rounded" >
+                <td scope="row">{{ forloop.counter }}</td>
+                <td>{{ i.BrandName }}</td>
+                <td>{{ i.Action }}
+            
+                
+                    <a class="btn btn-secondary" href="{% url 'admin_panel:updatebrand' i.id %}" role="button">Update</a>
+                    <a class="btn btn-danger" href="{% url 'admin_panel:deletebrand' i.id %}" role="button">Delete</a>
+                   
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    {% endblock %}

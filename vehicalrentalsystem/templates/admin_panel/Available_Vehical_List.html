@@ -1,0 +1,74 @@
+{% extends 'admin_panel/base.html' %}
+{% load static %}
+
+{% block head %}
+<style>
+    
+</style>
+    {% endblock %}
+
+{% block main %}
+
+<h1>Available Vehical</h1>
+<br>
+
+{% for i in types %}
+    <a href="{% url 'admin_panel:type_wise_filter_in_Available_Vehical' i.id %}" type="button" class="btn btn-outline-dark"> {{ i.Type_Name }} </a>
+{% endfor %}
+    <br>
+    <br>
+    <table class="table">
+        <thead class="table-dark" style="border-radius: 25px;">
+            <tr>
+                <th scope="col">NO.</th>
+                <th scope="col">vehical_Variant</th>
+                <th scope="col">Vehical_Number</th>
+                <th scope="col">Model_Year</th>
+                <th scope="col">KM_reading</th>
+                <th scope="col">Vehical_Orignal_img</th>
+                <th scope="col">Prize Per Day</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in data %}
+            <tr class="shadow p-3 mb-5 bg-body rounded" >
+                <td scope="row">{{ forloop.counter }}</td>
+                <td>{{ i.vehical_Variant }}</td>
+                <td>{{ i.Vehical_Number }}</td>
+                <td>{{ i.Model_Year }}</td>
+                <td>{{ i.KM_reading }}</td>
+                <td>
+                    {% if i.Vehical_Orignal_img %}
+                    <img src="{{ i.Vehical_Orignal_img.url }}" style="height: 50px;" class="rounded" alt="">
+                    {% else %}
+                    No Img
+                    {% endif %}
+                </td>
+                
+                <td>{{ i.Prize }}</td>
+                
+                
+            
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+
+    
+   
+        
+{% endblock %}
+
+
+
+
+
+
+
+
+
+        
+ 

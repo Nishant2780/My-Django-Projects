@@ -1,0 +1,16 @@
+{% extends 'admin_panel/base.html' %}
+{% load static %}
+
+{% block head %}
+
+{% endblock %}
+
+
+{% block main %}
+
+    <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }} 
+    <button type="submit">submit</button>
+    </form>
+{% endblock %}

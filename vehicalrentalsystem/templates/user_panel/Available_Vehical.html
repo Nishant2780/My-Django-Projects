@@ -1,0 +1,158 @@
+{% extends 'user_panel/base.html' %}
+{% load static %}
+
+{% block title %}
+
+Available Vehical
+
+{% endblock %}
+
+{% block head %}
+<!-- <style>
+    .abcd{
+        padding-top: 500px;
+    }
+</style> -->
+    {% endblock %}
+
+{% block main %}
+
+    <!-- Banner Starts Here -->
+
+<div class="banner header-text">
+    <div class="owl-banner owl-carousel">
+      <div class="banner-item-01">
+        <div class="text-content">
+          <h4>Find your car today!</h4>
+          <h2>Lorem ipsum dolor sit amet</h2>
+        </div>
+      </div>
+      <div class="banner-item-02">
+        <div class="text-content">
+          <h4>Fugiat Aspernatur</h4>
+          <h2>Laboriosam reprehenderit ducimus</h2>
+        </div>
+      </div>
+      <div class="banner-item-03">
+        <div class="text-content">
+          <h4>Saepe Omnis</h4>
+          <h2>Quaerat suscipit unde minus dicta</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+    <!-- Banner Ends Here -->
+    <!-- <h1>Available Vehical</h1> -->
+    <br>
+
+    {% for i in types %}
+        <a href="{% url 'user_panel:type_wise_filter_in_userpanel' i.id %}" type="button" class="btn btn-outline-dark"> {{ i.Type_Name }} </a>
+    {% endfor %}
+        <br>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Select City</a>
+          
+          <div class="dropdown-menu">
+            {% for i in city %}
+              <a class="dropdown-item" href="../../user_panel/city_wise_search/{{i.State}}">{{i.State}}</a>
+            {% endfor %}                     
+            
+          </div>
+      </li>
+        
+    <!-- <table class="table">
+        <thead class="table-dark" style="border-radius: 25px;">
+            <tr>
+                <th scope="col">NO.</th>
+                <th scope="col">vehical_Variant</th>
+                <th scope="col">Vehical_Number</th>
+                <th scope="col">Model_Year</th>
+                <th scope="col">KM_reading</th>
+                <th scope="col">Vehical_Orignal_img</th>
+                <th scope="col">Prize Per Day</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in data %}
+            <tr class="shadow p-3 mb-5 bg-body rounded" >
+                <td scope="row">{{ forloop.counter }}</td>
+                <td>{{ i.vehical_Variant }}</td>
+                <td>{{ i.Vehical_Number }}</td>
+                <td>{{ i.Model_Year }}</td>
+                <td>{{ i.KM_reading }}</td>
+                <td>
+                    {% if i.Vehical_Orignal_img %}
+                    <img src="{{ i.Vehical_Orignal_img.url }}" style="height: 50px;" class="rounded" alt="">
+                    {% else %}
+                    No Img
+                    {% endif %}
+                </td>
+                
+                <td>{{ i.Prize }}</td>
+                <td>{{ i.Action }}
+
+                  <a class="btn btn-secondary" href="{% url 'user_panel:Rent_Request' i.id  %}" role="button">Request Rent</a>
+                 
+              </td>
+                
+            
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table> -->
+
+
+
+    <div class="products ">
+      <div class="container ">
+        <div class="row ">
+    {% for i in data %}
+    
+          <div class="col-md-4 shadow p-3 mb-5 bg-body rounded">
+            <a  href="{% url 'user_panel:Rent_Request' i.id  %}" >
+            <div class="product-item">
+              <img src="{{ i.Vehical_Orignal_img.url }}" alt="">
+
+              <div class="down-content">
+                <h4>{{ i.vehical_Variant }}</h4>
+                  
+                <h6> {{ i.Prize }}₹ <small>Per Day</small></h6>
+
+                
+
+                <small>
+                    <!-- <strong title="passegengers"><i class="fa fa-user"></i> {{ i.vehical_Variant }} </strong> &nbsp;&nbsp;&nbsp; -->
+                    <!-- <strong title="luggages"><i class="fa fa-briefcase"></i> {{ i.Vehical_Number }}</strong> &nbsp;&nbsp;&nbsp; -->
+                    <!-- <strong title="doors"><i class="fa fa-sign-out"></i> {{ i.Model_Year }}</strong> &nbsp;&nbsp;&nbsp; -->
+                    <!-- <strong title="transmission"><i class="fa fa-cog"></i> {{ i.KM_reading }}</strong> -->
+                </small>
+
+                <span>
+                  <a href="#" data-toggle="modal" data-target="#exampleModal">Book Now</a>
+                </span>
+              </div>
+            </div>
+          </a>  
+          </div>     
+          
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+   
+        
+{% endblock %}
+
+
+
+
+
+
+
+
+
+        
+ 

@@ -1,0 +1,61 @@
+{% extends 'admin_panel/base.html' %}
+{% load static %}
+
+{% block head %}
+    
+<style>
+    /* .table{
+        background-color: rgb(33, 152, 199) !important;
+        border-radius: 25px;
+        
+    } */
+    
+    
+</style>
+
+      {% endblock %}
+
+
+    {% block main %}
+    
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button class="btn btn-danger" type="submit"> Submit</button>
+    </form> 
+    <br>
+    <br>
+
+    {% for i in types %}
+    <a href="{% url 'admin_panel:type_wise_category' i.id %}" type="button" class="btn btn-outline-dark"> {{ i.Type_Name }} </a>
+    {% endfor %}
+
+
+    <h1>Vehical Category </h1>
+    <table class="table">
+        <thead class="table-dark" >
+            <tr >
+                <th scope="col">NO.</th>
+                <th scope="col">Category Name</th>
+                <th scope="col">Vehical Type</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in data %}
+            <tr class="shadow p-3 mb-5 bg-body rounded" >
+                <td scope="row">{{ forloop.counter }}</td>
+                <td>{{ i.Category_Name }}</td>
+                <td>{{ i.Vehical_TypeID }}</td>
+                <td>{{ i.Action }}
+
+                    <a class="btn btn-secondary" href="{% url 'admin_panel:updatecategory' i.id %}" role="button">Update</a>
+                    <a class="btn btn-danger" href="{% url 'admin_panel:deletecategory' i.id %}" role="button">Delete</a>
+                   
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    {% endblock %}

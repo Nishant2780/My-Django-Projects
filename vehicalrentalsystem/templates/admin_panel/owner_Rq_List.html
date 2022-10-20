@@ -1,0 +1,88 @@
+{% extends 'admin_panel/base.html' %}
+{% load static %}
+
+{% block head %}
+    
+<style>  
+    
+</style>
+
+      {% endblock %}
+
+    {% block main %}
+
+    <br>
+    <br>
+
+    
+
+    <h1>Owner Rq List</h1>
+    <br>
+    <table class="table">
+        <thead class="table-dark" style="border-radius: 25px;">
+            <tr>
+                <th scope="col">NO.</th>
+                <th scope="col">vehical_Variant</th>
+                <th scope="col">Vehical_Number</th>
+                <th scope="col">Model_Year</th>
+                <th scope="col">KM_reading</th>
+                <th scope="col">Vehical_Orignal_img</th>
+                <th scope="col">Owner_Driving_Licence</th>
+                <th scope="col">RCBOOK</th>
+                <th scope="col">Prize Per Day</th>
+                <th scope="col">Status</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in data %}
+            <tr class="shadow p-3 mb-5 bg-body rounded" >
+                <td scope="row">{{ forloop.counter }}</td>
+                <!-- <td><img src="{{i.Variant_Photo.url}}" class="img" alt=""> -->
+                <td>{{ i.vehical_Variant }}</td>
+                <td>{{ i.Vehical_Number }}</td>
+                <td>{{ i.Model_Year }}</td>
+                <td>{{ i.KM_reading }}</td>
+                <td>
+                    {% if i.Vehical_Orignal_img %}
+                    <img src="{{ i.Vehical_Orignal_img.url }}" class="rounded" alt="">
+                    {% else %}
+                    No Img
+                    {% endif %}
+                </td>
+                <td>
+                    {% if i.Owner_Driving_Licence %}
+                    <img src="{{ i.Owner_Driving_Licence.url }}" class="rounded" alt="">
+                    {% else %}
+                    No Img
+                    {% endif %}
+                </td>
+                <td>
+                    {% if i.RCBOOK %}
+                    <img src="{{ i.RCBOOK.url }}" class="rounded" alt="">
+                    {% else %}
+                    No Img
+                    {% endif %}
+                </td>
+                <td>{{ i.Prize }}</td>
+                <td>{{ i.Status }}</td>
+                <td>
+                    {% if i.Status == "Pending" %}
+                    <a class="btn btn-success" href="{% url 'admin_panel:accept_owner_req' i.id %}" role="button">Accept</a>
+                    <a class="btn btn-danger" href="{% url 'admin_panel:reject_owner_req' i.id %}" role="button">Reject</a>
+                    {% elif  i.Status == "Accepted" %}
+                    <a class="btn btn-danger" href="{% url 'admin_panel:reject_owner_req' i.id %}" role="button">Reject</a>
+
+                    {% else %}
+                    <a class="btn btn-success" href="{% url 'admin_panel:accept_owner_req' i.id %}" role="button">Accept</a>
+
+                    {% endif %}
+                </td>            
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    
+    
+    {% endblock %}

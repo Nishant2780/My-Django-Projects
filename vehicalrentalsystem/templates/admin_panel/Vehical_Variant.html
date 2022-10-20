@@ -1,0 +1,72 @@
+{% extends 'admin_panel/base.html' %}
+{% load static %}
+
+{% block head %}
+    
+<style>
+    /* .table{
+        background-color: rgb(33, 152, 199) !important;
+        border-radius: 25px;
+        
+    } */
+    
+    
+</style>
+
+      {% endblock %}
+
+    {% block main %}
+    
+
+
+
+    <a class="btn btn-danger" href="{% url 'admin_panel:Add_Vehical_Variant' %}">Add New Variant</a> <br/> <br> <br>
+
+    {% for i in types %}
+        <a href="{% url 'admin_panel:type_wise_category_in_variant' i.id %}" type="button" class="btn btn-outline-dark"> {{ i.Type_Name }} </a>
+    {% endfor %}
+
+
+    <h1>Vehical Variant </h1>
+    <table class="table">
+        <thead class="table-dark" >
+            <tr>
+                <th scope="col">NO.</th>
+                <th scope="col">Variant Photo</th>
+                <th scope="col">Variant_Name</th>
+                <th scope="col">Vahical_Type</th>
+                <th scope="col">Brand_n</th>
+                <th scope="col">Vahical_catagory</th>
+                <th scope="col">Fuel_Type</th>
+                <th scope="col">Seat_Capacity</th>
+                <th scope="col">Air_Condition</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in data %}
+            <tr class="shadow p-3 mb-5 bg-body rounded" >
+                <td  scope="row">{{ forloop.counter }}</td>
+                <td ><img src="{{i.Variant_Photo.url}}" class="img" alt="">
+                <td >{{ i.Variant_Name }}</td>
+                <td >{{ i.Vahical_Type }}</td>
+                <td >{{ i.Brand_n }}</td>
+                <td >{{ i.Vahical_catagory }}</td>
+                <td >{{ i.Fuel_Type }}</td>
+                <td >{{ i.Seat_Capacity }}</td>
+                <td >{{ i.Air_Condition }}</td>
+                <td >{{ i.Action }}
+
+                    <a class="btn btn-secondary" href="{% url 'admin_panel:updatevariant' i.id %}" role="button">Update</a>
+                    <a class="btn btn-danger" href="{% url 'admin_panel:deletevariant' i.id %}" role="button">Delete</a>
+                   
+                </td>
+            
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    
+    
+    {% endblock %}

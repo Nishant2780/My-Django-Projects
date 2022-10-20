@@ -1,0 +1,43 @@
+{% extends 'admin_panel/base.html' %}
+{% load static %}
+
+{% block head %}
+
+{% endblock %}
+
+
+
+{% block main %}
+
+<h1>Users</h1>
+    <table class="table">
+        <thead class="table-dark" >
+            <tr>
+                <th scope="col">NO.</th>
+                <th scope="col">email</th>
+                <th scope="col">first_name</th>
+                <th scope="col">Mobile_Number</th>
+                <th scope="col">State</th>
+                <th scope="col">Pincode</th>
+                <th scope="col">Action</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in data %}
+            <tr class="shadow p-3 mb-5 bg-body rounded" >
+                <td  scope="row">{{ forloop.counter }}</td>
+                <td >{{ i.email }}</td>
+                <td >{{ i.first_name }}</td>
+                <td >{{ i.Mobile_Number }}</td>
+                <td >{{ i.State }}</td>
+                <td >{{ i.Pincode }}</td>
+                <td>{{ i.Action }}
+                    <a class="btn btn-danger" href="{% url 'admin_panel:deleteUsers' i.id %}" role="button">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
